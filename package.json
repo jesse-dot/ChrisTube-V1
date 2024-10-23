@@ -1,0 +1,16 @@
+{
+  "name": "alternative-youtube",
+  "version": "1.0.0",
+  "description": "An alternative website to YouTube with video playback, comments, likes, and channel creation.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "multer": "^1.4.2"
+  }
+}
