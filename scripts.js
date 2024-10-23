@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     loadVideos();
+    setupUploadForm();
 });
 
 function loadVideos() {
@@ -101,4 +102,27 @@ function addComment(videoId, comment) {
         commentsSection.appendChild(commentElement);
     })
     .catch(error => console.error('Error adding comment:', error));
+}
+
+function setupUploadForm() {
+    const uploadForm = document.getElementById('uploadForm');
+    uploadForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(uploadForm);
+        uploadVideo(formData);
+    });
+}
+
+function uploadVideo(formData) {
+    fetch('/api/videos', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(video => {
+        const videosContainer = document.getElementById('videos');
+        const videoElement = createVideoElement(video);
+        videosContainer.appendChild(videoElement);
+    })
+    .catch(error => console.error('Error uploading video:', error));
 }
